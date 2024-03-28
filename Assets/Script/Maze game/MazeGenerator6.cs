@@ -45,6 +45,12 @@ public class MazeGenerator6 : MonoBehaviour
             }
         }
     }
+    
+
+    void InitializePlayer()
+    {
+
+    }
 
     void DrawMaze()
     {

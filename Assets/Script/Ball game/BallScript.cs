@@ -69,10 +69,16 @@ public class BallScript : MonoBehaviour
         if (collision.gameObject.name == "hoop" && Vector2.Dot(Vector3.down,ballposition )< 0)
         {
 
-            print("win");
-            ps.Play();
+            StartCoroutine(Goal());
 
         }
 
+    }
+
+    IEnumerator Goal()
+    {
+         ps.Play();
+        yield return new WaitForSeconds(1f);
+        print("win");
     }
 }

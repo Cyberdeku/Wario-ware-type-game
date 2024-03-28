@@ -11,10 +11,20 @@ public class MouseScript : MonoBehaviour
     Vector2 Move;
 
     [SerializeField] float speed;
+    [SerializeField] float rotateSpeed;
 
+    public ParticleSystem ps;
     private void Update()
     {
         GetInputs();
+
+
+        //rotation
+        if (Move != Vector2.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward,Move);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation,toRotation,rotateSpeed * Time.deltaTime);
+        }
     }
 
     private void FixedUpdate()
@@ -63,11 +73,23 @@ public class MouseScript : MonoBehaviour
        if(collision.gameObject.name == "cheese")
         {
             print("win");
+            StartCoroutine(Death());
         }
         else
         {
             print("not a cheese win");
         }
        
+    }
+
+
+    IEnumerator Death()
+    {
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        ps.Play();
+        print("death");
+        yield return new WaitForSeconds(1);
+        gameObject.SetActive(false);
+        
     }
 }

@@ -9,7 +9,7 @@ public class HueShifter : MonoBehaviour
     float m_Saturation;
     float m_Value;
 
-    float Speed = 1;    
+    //float Speed = 1;    
 
     SpriteRenderer spriteRenderer;
     // Start is called before the first frame update

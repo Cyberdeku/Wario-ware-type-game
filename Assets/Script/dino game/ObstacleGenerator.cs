@@ -5,20 +5,26 @@ using UnityEngine;
 
 public class ObstacleGenerator : MonoBehaviour
 {
+    public GameManager gameManager;
     public GameObject rocket;
 
-
+    public Transform rocketContainer;
     public float minspeed;
     public float maxspeed;
     public float currentspeed;
     public float SpeedMultiplier;
 
 
-    private void Awake()
+    private void OnEnable()
     {
-        currentspeed = minspeed;
-
+        rocketContainer = (new GameObject("rocketContainer")).transform;
+        currentspeed = minspeed + gameManager.score / 2;
+        
         GenerateObstacle();
+    }
+    private void OnDisable()
+    {
+        Destroy(rocketContainer.gameObject);
     }
 
     public void GenerateObstacleDelay()
@@ -26,7 +32,6 @@ public class ObstacleGenerator : MonoBehaviour
         float SpawnWait = Random.Range(0.1f, 0.5f);
         Invoke("GenerateObstacle", SpawnWait);
 
-        //print(SpawnWait);
     }
 
     public void GenerateObstacle()
@@ -34,13 +39,13 @@ public class ObstacleGenerator : MonoBehaviour
         int randomNumber = Random.Range(0, 6);
         if(randomNumber > 3)
         {
-            GameObject ObstacleIns = Instantiate(rocket, transform.position + new Vector3(0f, 1.5f, 0f), transform.rotation);
+            GameObject ObstacleIns = Instantiate(rocket, transform.position + new Vector3(0f, 1.5f, 0f), transform.rotation, rocketContainer);
             ObstacleIns.GetComponent<Obstacle>().obstaclegenerator = this;
 
         }
         else
         {
-            GameObject ObstacleIns = Instantiate(rocket, transform.position, transform.rotation);
+            GameObject ObstacleIns = Instantiate(rocket, transform.position, transform.rotation, rocketContainer);
             ObstacleIns.GetComponent<Obstacle>().obstaclegenerator = this;
         }
 
@@ -56,6 +61,10 @@ public class ObstacleGenerator : MonoBehaviour
         if (currentspeed < maxspeed) 
         {
             currentspeed = currentspeed + SpeedMultiplier;
+        }
+        if (currentspeed > maxspeed)
+        {
+            currentspeed = maxspeed;
         }
     }
 }

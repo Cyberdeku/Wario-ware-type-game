@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ReactController : MonoBehaviour
+public class ReactController : MiniGame
 {
     [SerializeField]
     private TextMeshProUGUI gameText;
@@ -22,19 +22,32 @@ public class ReactController : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    //void Start()
+    //{
+    //    reactionTime = 0f;
+    //    startTime = 0f;
+    //    randomStart = 0f;
+    //    gameText.text = " Click to begin";
+    //    clockIsTicking = false;
+    //    canBeStopped = true;   
+    //}
+
+    private void OnEnable()
     {
         reactionTime = 0f;
         startTime = 0f;
         randomStart = 0f;
         gameText.text = " Click to begin";
         clockIsTicking = false;
-        canBeStopped = true;   
+        canBeStopped = true;
+        reactBackground.color = Color.white;
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+
+        timertext.text = "";
         if(Input.GetMouseButtonDown(0))
         {
             if (!clockIsTicking)
@@ -51,7 +64,7 @@ public class ReactController : MonoBehaviour
                 reactionTime = Time.time - startTime;
                 gameText.text = "Reaction time : " + reactionTime.ToString("N3") + "sec";
                 clockIsTicking=false;
-
+                OnGameOver(true);
             }
             else if (clockIsTicking && !canBeStopped)
             {
@@ -68,9 +81,10 @@ public class ReactController : MonoBehaviour
         {
             enemyReactionTime = Time.time - startTime;
         }
-        if (enemyReactionTime >10f)
+        if (enemyReactionTime >5f)
         {
             print("took to long u ded");
+            OnGameOver(false);
         }
         
     }
@@ -84,7 +98,7 @@ public class ReactController : MonoBehaviour
         startTime = Time.time;
         clockIsTicking=true;
         canBeStopped = true;
-
+        
 
     }
 }

@@ -11,12 +11,16 @@ public class MazeGenerator6 : MonoBehaviour
     private bool[,] maze;
     private Tilemap tilemap;
 
-    void Start()
+    //void Start()
+    //{
+    //    tilemap = GetComponent<Tilemap>();
+    //    GenerateMaze();
+    //}
+    private void OnEnable()
     {
         tilemap = GetComponent<Tilemap>();
         GenerateMaze();
     }
-
     void GenerateMaze()
     {
         maze = new bool[cols, rows]; // Initialize the maze array

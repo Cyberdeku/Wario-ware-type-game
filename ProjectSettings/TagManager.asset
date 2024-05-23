@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - rocket
+  - circle
+  - circleDark
+  - circleE
+  - circleDarkE
+  - circle dark
+  - Undefined
+  - circle dark enemy
   layers:
   - Default
   - TransparentFX
@@ -12,9 +19,9 @@ TagManager:
   - 
   - Water
   - UI
+  - console
   - 
-  - 
-  - 
+  - Pause
   - 
   - 
   - 

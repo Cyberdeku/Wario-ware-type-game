@@ -6,9 +6,11 @@ using UnityEditor;
 using System;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public Image lifeImage;
 
     public List<MiniGame> gameList;
     private MiniGame currentGame;
@@ -21,6 +23,9 @@ public class GameManager : MonoBehaviour
     int life = 3;
     float basetimer = 10f;
     int index;
+
+    public Canvas deathScreen;
+    public GameObject psVita;
 
     private void Start()
     {
@@ -38,14 +43,19 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        lifeImage.fillAmount = life / 3f;
 
         scoretext.text = score.ToString();
         lifetext.text = life.ToString();
 
         if(life <= 0 )
         {
-            SceneManager.LoadScene("SampleScene");
+
+            deathScreen.gameObject.SetActive(true);
+            psVita.SetActive(false);
         }
+
+
     }
     private void switchGame(bool win)
     {

@@ -37,7 +37,7 @@ public class ReactController : MiniGame
         reactionTime = 0f;
         startTime = 0f;
         randomStart = 0f;
-        gameText.text = " Click to begin";
+        gameText.text = "Press F to begin";
         clockIsTicking = false;
         canBeStopped = true;
         reactBackground.color = Color.white;
@@ -48,7 +48,7 @@ public class ReactController : MiniGame
     {
 
         timertext.text = "";
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.F))
         {
             if (!clockIsTicking)
             {
@@ -81,7 +81,7 @@ public class ReactController : MiniGame
         {
             enemyReactionTime = Time.time - startTime;
         }
-        if (enemyReactionTime >5f)
+        if (enemyReactionTime >2f)
         {
             print("took to long u ded");
             OnGameOver(false);

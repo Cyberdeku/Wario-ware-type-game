@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9936300a3eb2f49a18a0c2f3117863, type: 3}
+  m_Name: Jammo
+  m_EditorClassIdentifier: 
+  villagerName: ROBOTRON
+  villagerColor:
+    r: 1
+    g: 0
+    b: 0
+    a: 0
+  villagerNameColor:
+    r: 0.0990566
+    g: 0.18272378
+    b: 1
+    a: 0
+  dialogue: {fileID: 11400000, guid: 75c1b63a1d58a454a9c23eba65a0f37f, type: 2}

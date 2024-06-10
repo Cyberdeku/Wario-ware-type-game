@@ -8,13 +8,18 @@ public class bottleScript : MonoBehaviour
     public GameObject dropPrefab;
     public float dropSpeed = 10f;
 
-    public float moveSpeed =  1f;
+    public float moveSpeed =  5f;
     public bool hold =false ;
     public Animator animator;
     public bool shoot = false ;
-
+    public float life;
+    public EyeManager eyeManager;
+    private void OnEnable()
+    {
+        moveSpeed = 5f;
+    }
     // Update is called once per frame
-     void FixedUpdate()
+    void FixedUpdate()
     {
         #region Movement
         var movement = Input.GetAxis("Horizontal");
@@ -48,11 +53,29 @@ public class bottleScript : MonoBehaviour
         }
 
         #endregion
+
+        if (life <= 0)
+        {
+            //put death animation
+            //animator.SetBool("death", true);
+            moveSpeed = 0f;
+            StartCoroutine(eyeManager.Dead());
+        }
     }
 
     void Shoot()
     {
         var drop = Instantiate(dropPrefab, dropSpawnPoint.position, dropSpawnPoint.rotation);
         drop.GetComponent<Rigidbody2D>().velocity = dropSpawnPoint.up * dropSpeed;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "bloodDrop")
+        {
+            life--;
+            print(life);
+        }
+
     }
 }

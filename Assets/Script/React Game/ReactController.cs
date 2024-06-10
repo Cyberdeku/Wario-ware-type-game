@@ -74,6 +74,7 @@ public class ReactController : MiniGame
                 canBeStopped = true;
                 gameText.text = "Too Soon";
                 reactBackground.color = Color.black;
+                OnGameOver(false);
             }
         }
 

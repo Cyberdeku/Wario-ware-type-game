@@ -28,11 +28,11 @@ public class eyeScript : MonoBehaviour
     {
         transform.localPosition = _startPosition + Vector3.right * Mathf.Sin(_frequency *Time.time) * _magnitude;
 
-        if(life <=0)
+        if(life<=0)
         {
             animator.SetBool("death", true);
             StopCoroutine(Attack());
-            StartCoroutine(eyeManager.Dead());
+            StartCoroutine(eyeManager.Win());
         }
     }
 
@@ -55,8 +55,12 @@ public class eyeScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        life--;
-        print(life);
+        if(collision.gameObject.tag=="drop")
+        {
+            life--;
+            print(life);
+        }
+
     }
 
 }

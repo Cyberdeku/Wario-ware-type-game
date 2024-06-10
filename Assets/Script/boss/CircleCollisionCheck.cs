@@ -4,37 +4,40 @@ using UnityEngine;
 
 public class CircleCollisionCheck : MonoBehaviour
 {
+    public CharacterAttack characterScript;
+    public BossAttack enemyScript;
+    public Bar healthBar;
+    public EnemyBar enemyBar;
 
-
-    private void Update()
+    private void Start()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            print("test");
-            Destroy(gameObject);
-        }
+        enemyBar= FindObjectOfType<EnemyBar>();
+        healthBar = FindObjectOfType<Bar>();
+        characterScript = FindObjectOfType<CharacterAttack>();
+        enemyScript = FindObjectOfType<BossAttack>();
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (gameObject.CompareTag("circle"))
         {
             if (collision.gameObject.CompareTag("circleE"))
             {
-                print("did it");
+                enemyBar.Change(-1);
+                enemyScript.life--;
                 Destroy(gameObject);
                 Destroy(collision.gameObject);
             }
-        }
-        else if (gameObject.CompareTag("circle"))
-        {
-            if (collision.gameObject.CompareTag("circleDark"))
+            else if (collision.gameObject.CompareTag("circleDarkE"))
             {
-                print("wrong color");
+                characterScript.life--;
+                healthBar.Change(-1);
+
                 Destroy(gameObject);
                 Destroy(collision.gameObject);
             }
         }
+       
+       
 
 
 
@@ -42,20 +45,21 @@ public class CircleCollisionCheck : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("circleE"))
             {
-                print("wrong color");
+                characterScript.life--;
+                healthBar.Change(-1);
+                
                 Destroy(gameObject);
                 Destroy(collision.gameObject);
             }
-        }
-        else if (gameObject.CompareTag("circleDark"))
-        {
-            if (collision.gameObject.CompareTag("circleDarkE"))
+            else if (collision.gameObject.CompareTag("circleDarkE"))
             {
-                print("did it");
+                enemyBar.Change(-1);
+                enemyScript.life--;
                 Destroy(gameObject);
                 Destroy(collision.gameObject);
             }
         }
+        
 
 
     }

@@ -9,7 +9,10 @@ public class Circle : MonoBehaviour
     LineRenderer line;
 
 
-
+    private void Awake()
+    {
+        Destroy(gameObject, /*11.5*/40f);
+    }
     void Start()
     {
         line = gameObject.GetComponent<LineRenderer>();
@@ -24,7 +27,7 @@ public class Circle : MonoBehaviour
 
     private void Update()
     {
-        changeScale(0.001f);
+        changeScale(0.0005f);
     }
 
     void CreatePoints()

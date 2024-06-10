@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 801345269363722987, guid: adb6fce9216b20142931cb0d034a6f4e, type: 3}
       propertyPath: m_Name
-      value: Circle dark enemy0
+      value: Circle dark enemy
       objectReference: {fileID: 0}
     - target: {fileID: 801345269363722987, guid: adb6fce9216b20142931cb0d034a6f4e, type: 3}
       propertyPath: m_TagString
@@ -70,22 +70,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7493676957235555641, guid: adb6fce9216b20142931cb0d034a6f4e, type: 3}
       propertyPath: m_Parameters.colorGradient.ctime1
-      value: 8481
+      value: 65535
       objectReference: {fileID: 0}
     - target: {fileID: 7493676957235555641, guid: adb6fce9216b20142931cb0d034a6f4e, type: 3}
       propertyPath: m_Parameters.colorGradient.ctime2
       value: 65535
       objectReference: {fileID: 0}
     - target: {fileID: 7493676957235555641, guid: adb6fce9216b20142931cb0d034a6f4e, type: 3}
+      propertyPath: m_Parameters.colorGradient.ctime3
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493676957235555641, guid: adb6fce9216b20142931cb0d034a6f4e, type: 3}
       propertyPath: m_Parameters.colorGradient.key0.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7493676957235555641, guid: adb6fce9216b20142931cb0d034a6f4e, type: 3}
       propertyPath: m_Parameters.colorGradient.key0.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7493676957235555641, guid: adb6fce9216b20142931cb0d034a6f4e, type: 3}
       propertyPath: m_Parameters.colorGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493676957235555641, guid: adb6fce9216b20142931cb0d034a6f4e, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493676957235555641, guid: adb6fce9216b20142931cb0d034a6f4e, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493676957235555641, guid: adb6fce9216b20142931cb0d034a6f4e, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.r
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7493676957235555641, guid: adb6fce9216b20142931cb0d034a6f4e, type: 3}
@@ -110,7 +126,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7493676957235555641, guid: adb6fce9216b20142931cb0d034a6f4e, type: 3}
       propertyPath: m_Parameters.colorGradient.m_NumColorKeys
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

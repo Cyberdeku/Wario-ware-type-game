@@ -8,10 +8,12 @@ TagManager:
   - circle
   - circleDark
   - circleE
-  - circleDarkE
   - circle dark
   - Undefined
   - circle dark enemy
+  - drop
+  - bloodDrop
+  - circleDarkE
   layers:
   - Default
   - TransparentFX

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class DeathButton : MonoBehaviour
 {
-    public void Restart()
+    public void Continue()
     {
         SceneManager.LoadScene("SampleScene");
 
@@ -14,4 +14,12 @@ public class DeathButton : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("Menu");
+
+    }
+
+    
 }

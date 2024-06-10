@@ -27,6 +27,15 @@ public class GameManager : MonoBehaviour
     public Canvas deathScreen;
     public GameObject psVita;
 
+    public AudioSource SoundEffect;
+    public AudioClip DeathSound;
+
+    bool isDeathStarted = false;
+
+    public int score4boss;
+    public GameObject BossLevel;
+    bool bossLaunch = false;
+
     private void Start()
     {
         gameList.Shuffle();
@@ -50,9 +59,34 @@ public class GameManager : MonoBehaviour
 
         if(life <= 0 )
         {
+            if (!isDeathStarted)
+            {
+                StartCoroutine(Death());
 
-            deathScreen.gameObject.SetActive(true);
-            psVita.SetActive(false);
+            }
+
+
+        }
+        
+
+        
+        if (score >= score4boss)
+        {
+            if(!bossLaunch)
+            {
+                for (int i = 0; i < psVita.transform.childCount; i++)
+                {
+                    print("removed ");
+                    psVita.transform.GetChild(i).gameObject.SetActive(false);
+                }
+
+                StartCoroutine(BossStart());
+
+                bossLaunch = true;
+            }
+            
+
+            /*launch boss battle */
         }
 
 
@@ -63,13 +97,14 @@ public class GameManager : MonoBehaviour
         if (win)
         {
             score++;
-
+            //play win sound
             print("win");
             print("nextgame");
         }
         else
         {
             life--;
+            //play lose sound
             print("-1 life");
             print("nextgame");
         }
@@ -103,4 +138,22 @@ public class GameManager : MonoBehaviour
 
     }
 
+
+    IEnumerator Death()
+    {
+        
+        //play death sound
+        //SoundEffect.clip = DeathSound;
+        SoundEffect.PlayOneShot(DeathSound,0.1f);
+        deathScreen.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        psVita.SetActive(false);
+        isDeathStarted = true;  
+    }
+
+    IEnumerator BossStart()
+    {
+        BossLevel.SetActive(true);
+        yield return null;
+    }
 }

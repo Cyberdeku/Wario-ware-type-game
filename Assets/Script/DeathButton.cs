@@ -10,6 +10,11 @@ public class DeathButton : MonoBehaviour
 
     }
 
+    public void Dialogue()
+    {
+        SceneManager.LoadScene("Dialogue");
+    }
+
     public void Quit()
     {
         Application.Quit();

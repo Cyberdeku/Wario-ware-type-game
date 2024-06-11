@@ -11,6 +11,7 @@ namespace DialogueSystem
 
         private void Awake()
         {
+            StartCoroutine(Wait());
             StartCoroutine(dialogueSequence());
         }
 
@@ -35,6 +36,12 @@ namespace DialogueSystem
             {
                 transform.GetChild(i).gameObject.SetActive(false);
             }
+        }
+
+
+        private IEnumerator Wait()
+        {
+            yield return new WaitForSeconds(1);
         }
     }
 }

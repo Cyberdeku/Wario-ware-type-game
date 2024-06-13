@@ -8,9 +8,9 @@ public class BossAttack : MonoBehaviour
     public GameObject darkCircleCollider;
     public Animator animator;
 
-    public float shootDelay = 0.5f;
     private float nextShot = 0.15f;
-
+    public float minShotDelay;
+    public float maxShotDelay;
     public int life;
 
     public Transform position;
@@ -21,12 +21,17 @@ public class BossAttack : MonoBehaviour
     }
     void FixedUpdate()
     {
-        float shootDelays = Random.Range(0.7f, 2f);
+        float shootDelays = Random.Range(minShotDelay, maxShotDelay);
         if(Time.time > nextShot)
         {
             Attack();
             //animator.SetTrigger("attack");
             nextShot = Time.time + shootDelays;
+        }
+
+        if(life <= 0)
+        {
+            //End game and winning sequence
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -50,19 +55,18 @@ public class BossAttack : MonoBehaviour
             Instantiate(darkCircleCollider, transform.position, Quaternion.identity);
         }
 
-        int randomposition = Random.Range(0, 3);
+        int randomposition = Random.Range(0, 2);
 
         switch (randomposition)
         {
             case 0:
-                transform.position = new Vector3(0,0,0);
+                transform.localPosition= new Vector3(-6.5f,-2f,0);
                 break;
             case 1:
-                transform.position = new Vector3(10, 1, 1);
+                transform.localPosition = new Vector3(6.5f,-2f, 0);
                 break;
-            case 2:
-                transform.position = new Vector3(2, 20, 2);
-                break;
+
+
 
 
         }

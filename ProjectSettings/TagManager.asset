@@ -14,6 +14,8 @@ TagManager:
   - drop
   - bloodDrop
   - circleDarkE
+  - UFO
+  - UFOE
   layers:
   - Default
   - TransparentFX

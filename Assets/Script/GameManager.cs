@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
 
     public Canvas deathScreen;
     public GameObject psVita;
+    public SpriteRenderer psVitaSprite;
+    public GameObject explosionPrefab;
 
     public AudioSource SoundEffect;
     public AudioClip DeathSound;
@@ -74,11 +76,6 @@ public class GameManager : MonoBehaviour
         {
             if(!bossLaunch)
             {
-                for (int i = 0; i < psVita.transform.childCount; i++)
-                {
-                    print("removed ");
-                    psVita.transform.GetChild(i).gameObject.SetActive(false);
-                }
 
                 StartCoroutine(BossStart());
 
@@ -153,7 +150,23 @@ public class GameManager : MonoBehaviour
 
     IEnumerator BossStart()
     {
+        for (int i = 0; i < psVita.transform.childCount; i++)
+        {
+            print("removed ");
+            psVita.transform.GetChild(i).gameObject.SetActive(false);
+        }
+        for(int i=0; i<25; i++)
+        {
+            
+            Vector3 randomizePosition = new Vector3(UnityEngine.Random.Range(-15, 8.5f), UnityEngine.Random.Range(-8, 4), 0);
+            Instantiate(explosionPrefab,randomizePosition,Quaternion.identity);
+        }
+        
+        yield return new WaitForSeconds(0.8f);
+
+        psVitaSprite.enabled = false;
+        yield return new WaitForSeconds(0.5f);
+
         BossLevel.SetActive(true);
-        yield return null;
     }
 }

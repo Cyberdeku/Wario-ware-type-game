@@ -35,6 +35,11 @@ public class CircleCollisionCheck : MonoBehaviour
                 Destroy(gameObject);
                 Destroy(collision.gameObject);
             }
+            else if (collision.gameObject.CompareTag("UFOE"))
+            {
+                enemyBar.Change(+1);
+                Destroy(gameObject);
+            }
         }
        
        
@@ -58,8 +63,22 @@ public class CircleCollisionCheck : MonoBehaviour
                 Destroy(gameObject);
                 Destroy(collision.gameObject);
             }
+            else if (collision.gameObject.CompareTag("UFOE"))
+            {
+                enemyBar.Change(+1);
+                Destroy(gameObject);
+            }
         }
         
+        if(gameObject.CompareTag("circleE")|| gameObject.CompareTag("circleDarkE"))
+        {
+            if(collision.gameObject.CompareTag("UFO"))
+            {
+                characterScript.life--;
+                healthBar.Change(-1);
+                Destroy(gameObject) ;
+            }
+        }
 
 
     }

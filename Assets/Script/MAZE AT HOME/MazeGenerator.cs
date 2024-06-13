@@ -1,100 +1,65 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using System;
+using System.IO;
+using System.Linq;
 
 public class MazeGenerator : MonoBehaviour
 {
-    public int rows = 10; // Change the number of rows
-    public int cols = 10; // Change the number of columns
+    public Tilemap tilemap;
     public Tile wallTile;
-    public Tile passageTile;
-
-    private bool[,] maze;
-    private System.Random random;
 
     void Start()
     {
-        GenerateMaze();
+        GenerateMazeFromTextFile("maze");
     }
-
-    public void GenerateMaze()
+    private void Update()
     {
-        maze = new bool[rows, cols];
-        random = new System.Random();
-
-        InitializeMaze();
-        CarvePassages(random.Next(0, rows), random.Next(0, cols));
-        DrawMaze();
-    }
-
-    private void InitializeMaze()
-    {
-        for (int i = 0; i < rows; i++)
+        if(Input.GetMouseButtonDown(0))
         {
-            for (int j = 0; j < cols; j++)
-            {
-                maze[i, j] = true; // All cells are walls initially
-            }
+            GenerateMazeFromTextFile("maze");
         }
     }
-
-    private void CarvePassages(int row, int col)
+    void GenerateMazeFromTextFile(string filename)
     {
-        maze[row, col] = false; // Mark current cell as passage
-
-        int[] directions = { -1, 1 }; // Possible directions to move (up or down, left or right)
-
-        Shuffle(directions);
-
-        foreach (int d in directions)
+        string path = Path.Combine(Application.dataPath, "Resources", filename + ".txt");
+        if (File.Exists(path))
         {
-            if (random.Next(0, 2) == 0) // 50% chance to move horizontally
+            string[] allContent = File.ReadAllText(path).Split(new string[] { "---" }, System.StringSplitOptions.RemoveEmptyEntries);
+            if (allContent.Length == 0)
             {
-                int nextCol = col + d;
-
-                if (nextCol >= 0 && nextCol < cols && maze[row, nextCol]) // Check if the cell is within bounds and not visited
-                {
-                    maze[row, (col + nextCol) / 2] = false; // Carve passage between current cell and next cell
-                    CarvePassages(row, nextCol); // Recursively carve passages from the next cell
-                }
+                Debug.LogError("No layouts found in file: " + path);
+                return;
             }
-            else // 50% chance to move vertically
-            {
-                int nextRow = row + d;
 
-                if (nextRow >= 0 && nextRow < rows && maze[nextRow, col]) // Check if the cell is within bounds and not visited
+            // Select a random layout
+            string selectedLayout = allContent[Random.Range(0, allContent.Length)];
+
+            // Split the selected layout into lines
+            string[] lines = selectedLayout.Split(new string[] { "\r\n", "\n" }, System.StringSplitOptions.RemoveEmptyEntries);
+
+            // Clear the tilemap before generating a new maze
+            tilemap.ClearAllTiles();
+
+            for (int y = 0; y < lines.Length; y++)
+            {
+                for (int x = 0; x < lines[y].Length; x++)
                 {
-                    maze[(row + nextRow) / 2, col] = false; // Carve passage between current cell and next cell
-                    CarvePassages(nextRow, col); // Recursively carve passages from the next cell
+                    char c = lines[lines.Length - 1 - y][x];
+                    Vector3Int position = new Vector3Int(x, y, 0);
+                    if (c == 'X')
+                    {
+                        tilemap.SetTile(position, wallTile);
+                    }
+                    else if (c == 'O')
+                    {
+                        
+                    }
                 }
             }
         }
-    }
-
-    private void Shuffle(int[] array)
-    {
-        for (int i = array.Length - 1; i > 0; i--)
+        else
         {
-            int j = random.Next(0, i + 1);
-            int temp = array[i];
-            array[i] = array[j];
-            array[j] = temp;
-        }
-    }
-
-    private void DrawMaze()
-    {
-        Tilemap tilemap = GetComponent<Tilemap>();
-
-        tilemap.ClearAllTiles();
-
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < cols; j++)
-            {
-                Vector3Int position = new Vector3Int(i, j, 0);
-                tilemap.SetTile(position, maze[i, j] ? wallTile : passageTile);
-            }
+            Debug.LogError("File not found: " + path);
         }
     }
 }

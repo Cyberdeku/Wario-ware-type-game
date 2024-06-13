@@ -15,6 +15,10 @@ public class CharacterAttack : MonoBehaviour
     private float nextShot = 0.15f;
     private void Update()
     {
+        if(life <= 0)
+        {
+            //lose so back to menu
+        }
         if (Input.GetMouseButtonDown(0) && Time.time > nextShot)
         {
             Instantiate(whiteCircleprefab, transform.position, Quaternion.identity);

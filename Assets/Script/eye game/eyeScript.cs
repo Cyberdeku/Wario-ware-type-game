@@ -15,13 +15,23 @@ public class eyeScript : MonoBehaviour
     private Vector3 _startPosition;
     public float life;
     public Animator animator;
+    public bool isDead =false;
 
-    void Start()
+
+    private void OnEnable()
     {
+        life = 1f;
+        isDead = false;
+        animator.SetBool("death", isDead);
         _startPosition = new Vector3(0, 3f, 0);
         StartCoroutine("Attack");
-
     }
+    //void Start()
+    //{
+    //    _startPosition = new Vector3(0, 3f, 0);
+    //    StartCoroutine("Attack");
+
+    //}
 
 
     void Update()
@@ -30,8 +40,8 @@ public class eyeScript : MonoBehaviour
 
         if(life<=0)
         {
-            animator.SetBool("death", true);
-            StopCoroutine(Attack());
+            isDead = true;
+            animator.SetBool("death", isDead);
             StartCoroutine(eyeManager.Win());
         }
     }
@@ -39,7 +49,7 @@ public class eyeScript : MonoBehaviour
     IEnumerator Attack()
     {
         yield return new WaitForSeconds(3f);
-        while (true)
+        while (!isDead)
         {
             animator.SetTrigger("attack");
             var drop = Instantiate(dropPrefab, dropSpawnPoint.position, dropSpawnPoint.rotation);
@@ -58,7 +68,6 @@ public class eyeScript : MonoBehaviour
         if(collision.gameObject.tag=="drop")
         {
             life--;
-            print(life);
         }
 
     }

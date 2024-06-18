@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BossAttack : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class BossAttack : MonoBehaviour
     public int life;
 
     public Transform position;
+    public TextMeshProUGUI textWin;
 
     private void Start()
     {
@@ -31,6 +33,7 @@ public class BossAttack : MonoBehaviour
 
         if(life <= 0)
         {
+            textWin.text = "WIN <br> press escape to quit";
             //End game and winning sequence
         }
     }

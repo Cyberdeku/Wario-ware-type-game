@@ -22,7 +22,7 @@ public class DeathButton : MonoBehaviour
 
     public void BackToMenu()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("TitleScreen");
 
     }
 

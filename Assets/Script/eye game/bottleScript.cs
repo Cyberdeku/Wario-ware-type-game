@@ -14,9 +14,14 @@ public class bottleScript : MonoBehaviour
     public bool shoot = false ;
     public float life;
     public EyeManager eyeManager;
+    public SpriteRenderer spriteRenderer;
+
+
     private void OnEnable()
     {
+        spriteRenderer.color = Color.white;
         moveSpeed = 5f;
+        life = 1f;
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -56,8 +61,7 @@ public class bottleScript : MonoBehaviour
 
         if (life <= 0)
         {
-            //put death animation
-            //animator.SetBool("death", true);
+            spriteRenderer.color = new Color(1,0,0,0.8f);
             moveSpeed = 0f;
             StartCoroutine(eyeManager.Dead());
         }
@@ -74,7 +78,6 @@ public class bottleScript : MonoBehaviour
         if (collision.gameObject.tag == "bloodDrop")
         {
             life--;
-            print(life);
         }
 
     }

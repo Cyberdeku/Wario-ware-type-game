@@ -13,10 +13,12 @@ public class CharacterAttack : MonoBehaviour
 
     public float shootDelay = 0.5f;
     private float nextShot = 0.15f;
+    public TextMeshProUGUI textlose;
     private void Update()
     {
         if(life <= 0)
         {
+            textlose.text = "LOSE <br> press escape to quit";
             //lose so back to menu
         }
         if (Input.GetMouseButtonDown(0) && Time.time > nextShot)

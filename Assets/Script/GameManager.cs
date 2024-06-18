@@ -38,8 +38,11 @@ public class GameManager : MonoBehaviour
     public GameObject BossLevel;
     bool bossLaunch = false;
 
+    public EyeManager eyeManager;
+
     private void Start()
     {
+        
         gameList.Shuffle();
 
         currentGame = gameList[index];
@@ -54,9 +57,10 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+
         lifeImage.fillAmount = life / 3f;
 
-        scoretext.text = score.ToString();
+        scoretext.text = "Nv." + score.ToString() + "/" + score4boss.ToString();
         lifetext.text = life.ToString();
 
         if(life <= 0 )
@@ -161,6 +165,10 @@ public class GameManager : MonoBehaviour
             Vector3 randomizePosition = new Vector3(UnityEngine.Random.Range(-15, 8.5f), UnityEngine.Random.Range(-8, 4), 0);
             Instantiate(explosionPrefab,randomizePosition,Quaternion.identity);
         }
+        lifetext.enabled = false;
+        scoretext.enabled = false;
+        //kill timertext
+        
         
         yield return new WaitForSeconds(0.8f);
 

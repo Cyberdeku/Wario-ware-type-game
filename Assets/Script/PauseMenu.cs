@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool gameIsPaused;
+    public bool gameIsPaused;
 
     void Update()
     {
@@ -22,19 +22,19 @@ public class PauseMenu : MonoBehaviour
     {
         if (gameIsPaused)
         {
+
+
             Time.timeScale = 0f;
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                transform.GetChild(i).gameObject.SetActive(true);
-            }
+
+            SetActiveAllChildren(this.gameObject, true);
+            
         }
         else
         {
+
             Time.timeScale = 1;
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                transform.GetChild(i).gameObject.SetActive(false);
-            }
+
+            SetActiveAllChildren(this.gameObject, false);
         }
     }
     public void Settings()
@@ -52,4 +52,16 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("SampleScene");
 
     }
+
+
+    void SetActiveAllChildren(GameObject parent, bool isActive)
+    {
+        foreach (Transform child in parent.transform)
+        {
+            child.gameObject.SetActive(isActive);
+            SetActiveAllChildren(child.gameObject, isActive);
+        }
+    }
+
+
 }

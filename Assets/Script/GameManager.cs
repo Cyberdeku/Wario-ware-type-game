@@ -7,9 +7,18 @@ using System;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
+    public AudioMixerGroup SFXMixer;
+    public AudioMixerGroup MusicMixer;
+    [SerializeField] AudioClip gameScorePlus;
+    [SerializeField] AudioClip gameLifeLost;
+    [SerializeField] AudioClip DeathSound;
+    [SerializeField] AudioClip DeathSoundtrack;
+    [SerializeField] AudioSource SFXPlayer;
+    [SerializeField] AudioSource MusicPlayer;
     public Image lifeImage;
 
     public List<MiniGame> gameList;
@@ -29,8 +38,6 @@ public class GameManager : MonoBehaviour
     public SpriteRenderer psVitaSprite;
     public GameObject explosionPrefab;
 
-    public AudioSource SoundEffect;
-    public AudioClip DeathSound;
 
     bool isDeathStarted = false;
 
@@ -38,7 +45,6 @@ public class GameManager : MonoBehaviour
     public GameObject BossLevel;
     bool bossLaunch = false;
 
-    public EyeManager eyeManager;
 
     private void Start()
     {
@@ -80,7 +86,7 @@ public class GameManager : MonoBehaviour
         {
             if(!bossLaunch)
             {
-
+                
                 StartCoroutine(BossStart());
 
                 bossLaunch = true;
@@ -98,14 +104,14 @@ public class GameManager : MonoBehaviour
         if (win)
         {
             score++;
-            //play win sound
+            AudioManager(gameScorePlus,SFXMixer);
             print("win");
             print("nextgame");
         }
         else
         {
             life--;
-            //play lose sound
+            AudioManager(gameLifeLost, SFXMixer);
             print("-1 life");
             print("nextgame");
         }
@@ -142,13 +148,13 @@ public class GameManager : MonoBehaviour
 
     IEnumerator Death()
     {
-        
-        //play death sound
-        //SoundEffect.clip = DeathSound;
-        SoundEffect.PlayOneShot(DeathSound,0.1f);
+
+        SFXPlayer.PlayOneShot(DeathSound);
         deathScreen.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         psVita.SetActive(false);
+        MusicPlayer.clip = DeathSoundtrack;
+        MusicPlayer.Play();
         isDeathStarted = true;  
     }
 
@@ -176,5 +182,17 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         BossLevel.SetActive(true);
+    }
+
+
+    private void AudioManager(AudioClip clipToPlay,AudioMixerGroup audioMixerGroup)
+    {
+        print("a");
+        GameObject soundObject = new GameObject("SoundInstance");
+        AudioSource audioSource = soundObject.AddComponent<AudioSource>();
+        audioSource.clip = clipToPlay;
+        audioSource.Play();
+        audioSource.outputAudioMixerGroup = audioMixerGroup;
+        Destroy(soundObject, clipToPlay.length);
     }
 }

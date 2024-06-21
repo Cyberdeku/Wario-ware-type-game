@@ -14,6 +14,7 @@ public class ShowSliderValue : MonoBehaviour
     {
         textUpdate(slider.value);
         slider.onValueChanged.AddListener(textUpdate);
+        //play audio of the type modified to know the change
     }
     // Update is called once per frame
     void textUpdate(float value)

@@ -10,38 +10,43 @@ public class SetVolume : MonoBehaviour
     public Slider musicSlider;
     public Slider SFXSlider;
 
-    public void Start()
+    private const string MusicVolKey = "MusicVol";
+    private const string SFXVolKey = "SFXVol";
+
+    void Start()
     {
-        if (PlayerPrefs.HasKey("MusicVol"))
+        LoadVolume(MusicVolKey, musicSlider, ApplyMusicVolume);
+        LoadVolume(SFXVolKey, SFXSlider, ApplySFXVolume);
+    }
+
+    public void ApplyMusicVolume()
+    {
+        ApplyVolume(MusicVolKey, musicSlider.value, "MusicVol");
+    }
+
+    public void ApplySFXVolume()
+    {
+        ApplyVolume(SFXVolKey, SFXSlider.value, "SFXVol");
+    }
+
+    private void LoadVolume(string key, Slider slider, System.Action applyVolumeAction)
+    {
+        if (PlayerPrefs.HasKey(key))
         {
-            LoadLevel();
+            slider.value = PlayerPrefs.GetFloat(key);
+            applyVolumeAction.Invoke();
         }
         else
         {
-            SetLevel();
+            slider.value = 1.0f; // Default value if no PlayerPrefs found
+            PlayerPrefs.SetFloat(key, slider.value);
+            applyVolumeAction.Invoke();
         }
-        
-    }
-    public void SetLevel()
-    {
-        float sliderValue = musicSlider.value;
-        mixer.SetFloat("MusicVol",Mathf.Log10 (sliderValue) * 20);
-        PlayerPrefs.SetFloat("MusicVol",sliderValue);
     }
 
-    public void SetSFXLevel()
+    private void ApplyVolume(string key, float value, string mixerParameter)
     {
-        float sliderValue = SFXSlider.value;
-        mixer.SetFloat("SFXVol", Mathf.Log10(sliderValue) * 20);
-        PlayerPrefs.SetFloat("SFXVol", sliderValue);
-    }
-
-    private void LoadLevel()
-    {
-        musicSlider.value = PlayerPrefs.GetFloat("MusicVol");
-        SFXSlider.value = PlayerPrefs.GetFloat("SFXVol");
-
-        SetLevel();
-        SetSFXLevel();
+        mixer.SetFloat(mixerParameter, Mathf.Log10(value) * 20);
+        PlayerPrefs.SetFloat(key, value);
     }
 }

@@ -51,8 +51,12 @@ public class Circle : MonoBehaviour
 
     void changeScale(float scaleChange)
     {
-        Vector3 change = new Vector3(scaleChange, scaleChange, scaleChange);
-        transform.localScale += change;
+        if(Time.timeScale == 1)
+        {
+            Vector3 change = new Vector3(scaleChange, scaleChange, scaleChange);
+            transform.localScale += change;
+        }
+
 
     }
 

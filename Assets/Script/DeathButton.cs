@@ -7,12 +7,14 @@ public class DeathButton : MonoBehaviour
     public void Continue()
     {
         SceneManager.LoadScene("SampleScene");
+        Time.timeScale = 1.0f;
 
     }
 
     public void Dialogue()
     {
         SceneManager.LoadScene("Dialogue");
+        Time.timeScale = 1.0f;
     }
 
     public void Quit()
@@ -23,6 +25,7 @@ public class DeathButton : MonoBehaviour
     public void BackToMenu()
     {
         SceneManager.LoadScene("TitleScreen");
+        Time.timeScale = 1.0f;
 
     }
 

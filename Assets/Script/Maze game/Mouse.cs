@@ -11,10 +11,10 @@ public class Mouse : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float rotateSpeed;
 
-    Vector3 position = new(1.776f, -1.926f, 0f);
+    Vector3 position = new(21f, 4f, 0f);
     private void OnEnable()
     {
-        _rb.position = position;
+        transform.localPosition = position;
     }
     private void Update()
     {

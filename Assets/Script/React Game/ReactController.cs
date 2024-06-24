@@ -48,7 +48,7 @@ public class ReactController : MiniGame
     {
 
         timertext.text = "";
-        if(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.F))
+        if(Time.timeScale ==1 & Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.F))
         {
             if (!clockIsTicking)
             {

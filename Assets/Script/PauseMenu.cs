@@ -45,11 +45,13 @@ public class PauseMenu : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+        Time.timeScale = 1.0f;
     }
 
     public void Continue()
     {
         SceneManager.LoadScene("SampleScene");
+        Time.timeScale = 1.0f;
 
     }
 

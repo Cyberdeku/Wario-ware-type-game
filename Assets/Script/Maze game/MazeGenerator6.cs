@@ -21,6 +21,13 @@ public class MazeGenerator6 : MonoBehaviour
         tilemap = GetComponent<Tilemap>();
         GenerateMaze();
     }
+    private void Update()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            GenerateMaze();
+        }
+    }
     void GenerateMaze()
     {
         maze = new bool[cols, rows]; // Initialize the maze array

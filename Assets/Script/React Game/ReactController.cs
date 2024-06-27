@@ -37,7 +37,7 @@ public class ReactController : MiniGame
         reactionTime = 0f;
         startTime = 0f;
         randomStart = 0f;
-        gameText.text = "Press F to begin";
+        gameText.text = "Press Left Click or F to begin";
         clockIsTicking = false;
         canBeStopped = true;
         reactBackground.color = Color.white;

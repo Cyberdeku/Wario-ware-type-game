@@ -34,6 +34,7 @@ public class BossAttack : MonoBehaviour
         if(life <= 0)
         {
             textWin.text = "WIN <br> press escape to quit";
+            position.localPosition = new Vector3(0, -2, 0);
             //End game and winning sequence
         }
     }

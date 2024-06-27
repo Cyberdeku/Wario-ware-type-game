@@ -6,7 +6,9 @@ using TMPro;
 public class WaitScriptChanges : MonoBehaviour
 {
 
-    public GameObject Score;
+    public GameObject Background;
+    public GameObject Robot;
+    public GameObject UI;
     public GameObject Console;
     public GameObject Games;
 
@@ -26,7 +28,11 @@ public class WaitScriptChanges : MonoBehaviour
     IEnumerator LoadingSlices()
     {
         yield return new WaitForSeconds(.5f);
-        Score.SetActive(true);
+        Background.SetActive(true);
+        yield return new WaitForSeconds(.3f);
+        Robot.SetActive(true);
+        yield return new WaitForSeconds(.3f);
+        UI.SetActive(true);
         yield return new WaitForSeconds(1.5f);
         Console.SetActive(true);
 

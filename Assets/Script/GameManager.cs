@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioSource SFXPlayer;
     [SerializeField] AudioSource MusicPlayer;
     public Image lifeImage;
-
+    public GameObject UI;
     public List<MiniGame> gameList;
     private MiniGame currentGame;
     private ObstacleGenerator obstacleGenerator;
@@ -171,16 +171,13 @@ public class GameManager : MonoBehaviour
             Vector3 randomizePosition = new Vector3(UnityEngine.Random.Range(-15, 8.5f), UnityEngine.Random.Range(-8, 4), 0);
             Instantiate(explosionPrefab,randomizePosition,Quaternion.identity);
         }
-        lifetext.enabled = false;
-        scoretext.enabled = false;
-        //kill timertext
-        
-        
-        yield return new WaitForSeconds(0.8f);
+        //Text saying you beat his minigame so now you have to fight him
 
+        UI.gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.8f);
         psVitaSprite.enabled = false;
         yield return new WaitForSeconds(0.5f);
-
+        //set active final cutscene characters
         BossLevel.SetActive(true);
     }
 

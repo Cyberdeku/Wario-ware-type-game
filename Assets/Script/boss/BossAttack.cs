@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class BossAttack : MonoBehaviour
 {
@@ -16,10 +17,16 @@ public class BossAttack : MonoBehaviour
 
     public Transform position;
     public TextMeshProUGUI textWin;
+    public bool defeated;
+    public BossAttack bossAttack;
+    private Transform enemyCircleContainer;
+    public CharacterAttack characterAttack;
 
-    private void Start()
+    private void OnEnable()
     {
         //animator = GetComponent<Animator>();
+        defeated = false;
+        enemyCircleContainer = (new GameObject("enemyCircleContainer")).transform;
     }
     void FixedUpdate()
     {
@@ -31,11 +38,11 @@ public class BossAttack : MonoBehaviour
             nextShot = Time.time + shootDelays;
         }
 
-        if(life <= 0)
+        if(life <= 0 && defeated == false)
         {
-            textWin.text = "WIN <br> press escape to quit";
-            position.localPosition = new Vector3(0, -2, 0);
-            //End game and winning sequence
+            defeated = true;
+            GameEnded();
+            
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -52,11 +59,11 @@ public class BossAttack : MonoBehaviour
         int randomNumber = Random.Range(0, 2);
         if (randomNumber == 0)
         {
-            Instantiate(whiteCircleCollider, transform.position, Quaternion.identity);
+            GameObject CircleIns = Instantiate(whiteCircleCollider, transform.position, Quaternion.identity, enemyCircleContainer);
         }
         else
         {
-            Instantiate(darkCircleCollider, transform.position, Quaternion.identity);
+            GameObject CircleIns = Instantiate(darkCircleCollider, transform.position, Quaternion.identity, enemyCircleContainer);
         }
 
         int randomposition = Random.Range(0, 2);
@@ -76,5 +83,13 @@ public class BossAttack : MonoBehaviour
         }
 
     }
+    public void GameEnded()
+    {
+        position.localPosition = new Vector3(0, -2, 0);
 
+        Destroy(enemyCircleContainer.gameObject);
+        Destroy(characterAttack.characterCircleContainer.gameObject);
+        bossAttack.enabled = false;
+        characterAttack.enabled = false;
+    }
 }

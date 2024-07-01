@@ -14,22 +14,32 @@ public class CharacterAttack : MonoBehaviour
     public float shootDelay = 0.5f;
     private float nextShot = 0.15f;
     public TextMeshProUGUI textlose;
+    public Transform characterCircleContainer;
+    public GameManager gameManager;
+    public BossAttack bossAttack;
+    private void OnEnable()
+    {
+        characterCircleContainer= (new GameObject("characterCircleContainer")).transform;
+    }
+
+
     private void Update()
     {
         if(life <= 0)
         {
-            textlose.text = "LOSE <br> press escape to quit";
-            //lose so back to menu
+            bossAttack.GameEnded();
+            StartCoroutine(gameManager.Death());
+            
         }
         if (Input.GetMouseButtonDown(0) && Time.time > nextShot)
         {
-            Instantiate(whiteCircleprefab, transform.position, Quaternion.identity);
+            GameObject CircleIns = Instantiate(whiteCircleprefab, transform.position, Quaternion.identity,characterCircleContainer);
             nextShot = Time.time+shootDelay;
         }
 
         if (Input.GetMouseButtonDown(1) && Time.time > nextShot)
         {
-            Instantiate(darkCircleprefab, transform.position, Quaternion.identity);
+            GameObject CircleIns = Instantiate(darkCircleprefab, transform.position, Quaternion.identity,characterCircleContainer);
             nextShot = Time.time + shootDelay;
         }
 

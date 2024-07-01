@@ -8,6 +8,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using UnityEngine.Playables;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,7 +17,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioClip gameScorePlus;
     [SerializeField] AudioClip gameLifeLost;
     [SerializeField] AudioClip DeathSound;
+    [SerializeField] AudioClip winGameEnded;
     [SerializeField] AudioClip DeathSoundtrack;
+    [SerializeField] AudioClip WinSoundtrack;
     [SerializeField] AudioSource SFXPlayer;
     [SerializeField] AudioSource MusicPlayer;
     public Image lifeImage;
@@ -34,6 +37,7 @@ public class GameManager : MonoBehaviour
     int index;
 
     public Canvas deathScreen;
+    public Canvas winScreen;
     public GameObject psVita;
     public SpriteRenderer psVitaSprite;
     public GameObject explosionPrefab;
@@ -44,8 +48,14 @@ public class GameManager : MonoBehaviour
     public int score4boss;
     public GameObject BossLevel;
     bool bossLaunch = false;
+    public GameObject FinalCutsceneCharacters;
+    public BossAttack bossAttack;
+    public PlayableDirector director;
 
-
+    private void OnEnable()
+    {
+        director.stopped += OnDirectorEnded;
+    }
     private void Start()
     {
         
@@ -79,7 +89,6 @@ public class GameManager : MonoBehaviour
 
 
         }
-        
 
         
         if (score >= score4boss)
@@ -96,8 +105,20 @@ public class GameManager : MonoBehaviour
             /*launch boss battle */
         }
 
+        if(bossAttack.defeated== true)
+        {
+            LaunchCutscene();
+            bossAttack.defeated = false;
+        }
+
 
     }
+    //ending Cutscene
+    void OnDirectorEnded(PlayableDirector director)
+    {
+        StartCoroutine(Win());
+    }
+
     private void switchGame(bool win)
     {
 
@@ -146,7 +167,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    IEnumerator Death()
+    public IEnumerator Death()
     {
 
         SFXPlayer.PlayOneShot(DeathSound);
@@ -177,7 +198,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
         psVitaSprite.enabled = false;
         yield return new WaitForSeconds(0.5f);
-        //set active final cutscene characters
+        FinalCutsceneCharacters.SetActive(true);
         BossLevel.SetActive(true);
     }
 
@@ -191,5 +212,23 @@ public class GameManager : MonoBehaviour
         audioSource.Play();
         audioSource.outputAudioMixerGroup = audioMixerGroup;
         Destroy(soundObject, clipToPlay.length);
+    }
+    
+    private void LaunchCutscene()
+    {
+        director.Play();
+    }
+
+    IEnumerator Win()
+    {
+        yield return new WaitForSeconds(1.5f);
+        SFXPlayer.PlayOneShot(winGameEnded);
+        winScreen.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        BossLevel.SetActive(false);
+        MusicPlayer.clip = WinSoundtrack; //change win soundtrack
+        MusicPlayer.Play();
+
+        print("the timeline ended");
     }
 }

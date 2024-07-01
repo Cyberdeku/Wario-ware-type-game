@@ -13,8 +13,8 @@ public class ObstacleGenerator : MonoBehaviour
     public float maxspeed;
     public float currentspeed;
     public float SpeedMultiplier;
-
-
+    
+    
     private void OnEnable()
     {
         rocketContainer = (new GameObject("rocketContainer")).transform;

@@ -2586,7 +2586,8 @@ MonoBehaviour:
   isAlive: 1
   Jumpforce: 333
   ps: {fileID: 1751559334}
-  AudioClip: {fileID: 8300000, guid: d66072c8baf69c2429d0cbc9e25567dc, type: 3}
+  hitClip: {fileID: 8300000, guid: e0893ce689729d344ae1406e3d851e8e, type: 3}
+  jumpClip: {fileID: 8300000, guid: f4954eaecda88774fb5b0a989f92f8f6, type: 3}
   source: {fileID: 353951271}
 --- !u!1 &363597643
 GameObject:
@@ -5139,7 +5140,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: 17d4f0d54dc121144a08ee40818ec11f, type: 2}
   m_audioClip: {fileID: 8300000, guid: dd55f784fa5539749b3e9b609b02ffa4, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.6
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -5472,7 +5473,7 @@ MonoBehaviour:
   timeractive: 1
   timer: 10
   ps: {fileID: 1644805942}
-  clip: {fileID: 8300000, guid: d9d3ef78e728eb34aa46ef91296a9304, type: 3}
+  clip: {fileID: 8300000, guid: 3ee8a5911afd30b4b999bad570569c11, type: 3}
   source: {fileID: 839253507}
 --- !u!1 &785594794
 GameObject:
@@ -10886,6 +10887,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballScript: {fileID: 768751683}
   rb: {fileID: 839253503}
+  audioSource: {fileID: 839253507}
+  clip: {fileID: 8300000, guid: b91a495d844beb340a9f1575627dd124, type: 3}
   maxvelocity: 20
   minthrust: -1
   maxthrust: 15
@@ -11176,7 +11179,7 @@ MonoBehaviour:
   psVita: {fileID: 604987421}
   psVitaSprite: {fileID: 604987423}
   explosionPrefab: {fileID: 2493751558743330223, guid: 9bfc52554a7228145af96fb5df627521, type: 3}
-  score4boss: 1
+  score4boss: 10
   BossLevel: {fileID: 469730065}
   FinalCutsceneCharacters: {fileID: 1624573353}
   bossAttack: {fileID: 1762041971}
@@ -12064,7 +12067,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1018220291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14923,6 +14926,10 @@ PlayableDirector:
     value: {fileID: 1762041976}
   - key: {fileID: -5533989411516784823, guid: d78c361fb638d8349b462e15ee04776e, type: 2}
     value: {fileID: 77615702}
+  - key: {fileID: 408558008432268310, guid: d78c361fb638d8349b462e15ee04776e, type: 2}
+    value: {fileID: 1762041977}
+  - key: {fileID: 5419418159166682413, guid: d78c361fb638d8349b462e15ee04776e, type: 2}
+    value: {fileID: 1055204225}
   m_ExposedReferences:
     m_References:
     - b0c03f883287a5a41bab2cbabf8831f8: {fileID: 469730065}
@@ -17929,7 +17936,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1624573354
 Transform:
   m_ObjectHideFlags: 0
@@ -33395,6 +33402,7 @@ GameObject:
   - component: {fileID: 1762041975}
   - component: {fileID: 1762041974}
   - component: {fileID: 1762041976}
+  - component: {fileID: 1762041977}
   m_Layer: 0
   m_Name: enemy
   m_TagString: UFOE
@@ -33436,7 +33444,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   minShotDelay: 0.44
   maxShotDelay: 3.52
-  life: 30
+  life: 1
   position: {fileID: 1762041970}
   textWin: {fileID: 0}
   defeated: 0
@@ -33577,6 +33585,102 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!82 &1762041977
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762041969}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b52bc721ae4bfd940b4eb3a9113036c0, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 65
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1762806316
 GameObject:
   m_ObjectHideFlags: 0
@@ -33672,8 +33776,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1778956538}
   - component: {fileID: 1778956537}
+  - component: {fileID: 1778956540}
   m_Layer: 0
-  m_Name: basket court
+  m_Name: basketCourt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33746,6 +33851,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 768751682}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1778956540
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778956536}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.030523777, y: -0.061047673}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 6, y: 1}
+    newSize: {x: 16, y: 0.64}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 2
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 16.072865, y: 0.87790465}
+  m_EdgeRadius: 0
 --- !u!1 &1782672078
 GameObject:
   m_ObjectHideFlags: 0

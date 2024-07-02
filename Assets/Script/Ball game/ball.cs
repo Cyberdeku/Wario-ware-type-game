@@ -8,6 +8,10 @@ public class ball : MonoBehaviour
     BallScript ballScript;
     [SerializeField]
     Rigidbody2D rb;
+    [SerializeField]
+    AudioSource audioSource;
+    [SerializeField]
+    AudioClip clip;
 
     public float maxvelocity = 15f;
 
@@ -76,6 +80,10 @@ public class ball : MonoBehaviour
 
             StartCoroutine(ballScript.Goal());
 
+        }
+        if(collision.gameObject.name == "basketCourt")
+        {
+            audioSource.PlayOneShot(clip);
         }
 
     }

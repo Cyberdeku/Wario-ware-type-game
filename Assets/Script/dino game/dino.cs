@@ -19,7 +19,8 @@ public class dino : MonoBehaviour
 
     public ParticleSystem ps;
 
-    public AudioClip AudioClip;
+    public AudioClip hitClip;
+    public AudioClip jumpClip;
     public AudioSource source;
 
     Vector3 position = new(-10.23f,-3.5f,0f);
@@ -53,9 +54,7 @@ public class dino : MonoBehaviour
     {
         if (isAlive == false)
         {
-
-            print("idied");
-            source.PlayOneShot(AudioClip, 0.1f);
+            //source.PlayOneShot(hitClip, 1f);
 
         }
         else
@@ -65,6 +64,7 @@ public class dino : MonoBehaviour
                 if (isgrounded == true)
                 {
                     _rb.AddForce(Vector2.up * Jumpforce);
+                    source.PlayOneShot(jumpClip, 1f);
                     isgrounded = false;
 
                     animator.SetBool("crouch", false);
@@ -99,12 +99,12 @@ public class dino : MonoBehaviour
     {
         if (collision.gameObject.tag == "rocket")
         {
+            source.PlayOneShot(hitClip, 1f);
             animator.SetTrigger("Death");
             ps.Play();
             isAlive = false;
             _rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            source.PlayOneShot(AudioClip, 1f);
-            //Time.timeScale =0.1f;
+
 
             Destroy(collision.gameObject);
             StartCoroutine(dinoScript.End());

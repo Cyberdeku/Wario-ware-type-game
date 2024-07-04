@@ -7,9 +7,11 @@ using System;
 
 public class Press2Win : MiniGame
 {
+    public AudioSource source;
     MiniGame miniGame;
     [Header("UI")]
     public TextMeshProUGUI textwin;
+    private bool hastyped;
 
     //// Array of possible KeyCodes
     //private KeyCode[] possibleKeys = {
@@ -34,6 +36,7 @@ public class Press2Win : MiniGame
 
     private void OnEnable()
     {
+        hastyped = false;
         timeractive = true;
 
         // Choose a random KeyCode from possibleKeys
@@ -54,13 +57,35 @@ public class Press2Win : MiniGame
             timer = 0;
             OnGameOver(false);
         }
-
-        if (Input.GetKeyDown(inputwin))
+        if(Input.anyKeyDown && hastyped ==false)
         {
-            textwin.text = "Win";
-            timeractive = false;
-            OnGameOver(true);
+            if (Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Mouse1))
+            {
+                return;
+            }
+                if (Input.GetKeyDown(inputwin))
+            {
+                hastyped=true;
+                textwin.text = "Win";
+                timeractive = false;
+                OnGameOver(true);
+                source.Play();
+            }
+            else
+            {
+                hastyped = true;
+                textwin.text = "Lose";
+                timeractive = false;
+                OnGameOver(false);
+                source.Play();
+            }
         }
+        //if (Input.GetKeyDown(inputwin))
+        //{
+        //    textwin.text = "Win";
+        //    timeractive = false;
+        //    OnGameOver(true);
+        //}
     }
 
     //// Helper function to convert KeyCode to string for display

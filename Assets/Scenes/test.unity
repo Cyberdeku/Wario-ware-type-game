@@ -224,8 +224,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2054297756}
-  - component: {fileID: 2054297757}
   - component: {fileID: 2054297758}
+  - component: {fileID: 2054297759}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -248,42 +248,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2054297757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2054297753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b8a1a4e55378974c949fe36c9900969, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pupils:
-  - age: 20
-    height: 1.87
-    Names:
-    - Ben
-    birthDay: 4
-    hairColor: 01000000
-    favoriteColor: 4
-    stamina: 20
-    mood: 20
-    favorites: 01000000
-    "sati\xE9t\xE9": 20
-  - age: 513
-    height: 1230
-    Names:
-    - sdggjhf
-    birthDay: 0
-    hairColor: 00000000
-    favoriteColor: 0
-    stamina: 20
-    mood: 20
-    favorites: 00000000
-    "sati\xE9t\xE9": 20
-  frequency: 1
 --- !u!82 &2054297758
 AudioSource:
   m_ObjectHideFlags: 0
@@ -294,8 +258,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b41fa96924184524d836bdf391f9cc70, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -380,6 +344,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2054297759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054297753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec3d0feba1020db4c9fafa3a79e31f8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 8300000, guid: dd55f784fa5539749b3e9b609b02ffa4, type: 3}
+  audioSource: {fileID: 2054297758}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

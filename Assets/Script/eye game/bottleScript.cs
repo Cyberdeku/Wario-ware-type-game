@@ -15,6 +15,7 @@ public class bottleScript : MonoBehaviour
     public float life;
     public EyeManager eyeManager;
     public SpriteRenderer spriteRenderer;
+    public bool isdead;
 
 
     private void OnEnable()
@@ -22,6 +23,7 @@ public class bottleScript : MonoBehaviour
         spriteRenderer.color = Color.white;
         moveSpeed = 5f;
         life = 1f;
+        isdead = false;
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -32,7 +34,8 @@ public class bottleScript : MonoBehaviour
         #endregion
 
         #region Shoot
-        if (Input.GetKey(KeyCode.Space))
+
+        if (Input.GetKey(KeyCode.Space) && isdead ==false )
         {
             hold = true;
         }
@@ -61,6 +64,7 @@ public class bottleScript : MonoBehaviour
 
         if (life <= 0)
         {
+            isdead = true;
             spriteRenderer.color = new Color(1,0,0,0.8f);
             moveSpeed = 0f;
             StartCoroutine(eyeManager.Dead());

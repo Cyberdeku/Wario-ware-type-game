@@ -16,9 +16,15 @@ public class ReactController : MiniGame
     private float randomStart;
     private float enemyReactionTime;
 
+
     bool clockIsTicking;
     bool canBeStopped;
-
+    [SerializeField]
+    AudioClip hit;
+    [SerializeField]
+    AudioClip build;
+    [SerializeField]
+    AudioSource source;
 
 
     // Start is called before the first frame update
@@ -82,7 +88,7 @@ public class ReactController : MiniGame
         {
             enemyReactionTime = Time.time - startTime;
         }
-        if (enemyReactionTime >2f)
+        if (enemyReactionTime >1.5f)
         {
             print("took to long u ded");
             OnGameOver(false);
@@ -93,8 +99,11 @@ public class ReactController : MiniGame
 
     IEnumerator StartMeasuring()
     {
-        randomStart = Random.Range(0.7f, 6f);
+        randomStart = Random.Range(0.7f, 5f);
+        source.PlayOneShot(build);
         yield return new WaitForSeconds(randomStart);
+        source.Stop();
+        source.PlayOneShot(hit);
         reactBackground.color = Color.green;
         startTime = Time.time;
         clockIsTicking=true;

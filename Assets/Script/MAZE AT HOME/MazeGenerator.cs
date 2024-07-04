@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.IO;
 using System.Linq;
+using UnityEngine.UI;
 
 public class MazeGenerator : MonoBehaviour
 {
@@ -21,45 +22,46 @@ public class MazeGenerator : MonoBehaviour
     }
     void GenerateMazeFromTextFile(string filename)
     {
-        string path = Path.Combine(Application.dataPath, "Resources", filename + ".txt");
-        if (File.Exists(path))
+        var content = Resources.Load<TextAsset>(filename);
+        //string path = Path.Combine(Application.dataPath, "Resources", filename + ".txt");
+        if (content == null)
         {
-            string[] allContent = File.ReadAllText(path).Split(new string[] { "---" }, System.StringSplitOptions.RemoveEmptyEntries);
-            if (allContent.Length == 0)
+            Debug.LogError("No layouts found in file: " + content);
+            return;
+        }
+
+        string[] allContent = content.text.Split(new string[] { "---" }, System.StringSplitOptions.RemoveEmptyEntries);
+        if (allContent.Length == 0)
+        {
+            Debug.LogError("No layouts found in file: " + content);
+            return;
+        }
+
+        // Select a random layout
+        string selectedLayout = allContent[Random.Range(0, allContent.Length)];
+
+        // Split the selected layout into lines
+        string[] lines = selectedLayout.Split(new string[] { "\r\n", "\n" }, System.StringSplitOptions.RemoveEmptyEntries);
+
+        // Clear the tilemap before generating a new maze
+        tilemap.ClearAllTiles();
+
+        for (int y = 0; y < lines.Length; y++)
+        {
+            for (int x = 0; x < lines[y].Length; x++)
             {
-                Debug.LogError("No layouts found in file: " + path);
-                return;
-            }
-
-            // Select a random layout
-            string selectedLayout = allContent[Random.Range(0, allContent.Length)];
-
-            // Split the selected layout into lines
-            string[] lines = selectedLayout.Split(new string[] { "\r\n", "\n" }, System.StringSplitOptions.RemoveEmptyEntries);
-
-            // Clear the tilemap before generating a new maze
-            tilemap.ClearAllTiles();
-
-            for (int y = 0; y < lines.Length; y++)
-            {
-                for (int x = 0; x < lines[y].Length; x++)
+                char c = lines[lines.Length - 1 - y][x];
+                Vector3Int position = new Vector3Int(x, y, 0);
+                if (c == 'X')
                 {
-                    char c = lines[lines.Length - 1 - y][x];
-                    Vector3Int position = new Vector3Int(x, y, 0);
-                    if (c == 'X')
-                    {
-                        tilemap.SetTile(position, wallTile);
-                    }
-                    else if (c == 'O')
-                    {
+                    tilemap.SetTile(position, wallTile);
+                }
+                else if (c == 'O')
+                {
                         
-                    }
                 }
             }
         }
-        else
-        {
-            Debug.LogError("File not found: " + path);
-        }
+
     }
 }

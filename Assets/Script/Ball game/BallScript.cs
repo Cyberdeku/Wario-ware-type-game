@@ -10,7 +10,7 @@ public class BallScript : MiniGame
     public AudioSource source;
     public IEnumerator Goal()
     {
-        source.PlayOneShot(clip, 2f);
+        source.PlayOneShot(clip, 1f);
          ps.Play();
         yield return new WaitForSeconds(1f);
         //print("win");

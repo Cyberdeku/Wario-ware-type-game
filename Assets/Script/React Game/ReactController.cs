@@ -100,10 +100,10 @@ public class ReactController : MiniGame
     IEnumerator StartMeasuring()
     {
         randomStart = Random.Range(0.7f, 5f);
-        source.PlayOneShot(build);
+        source.PlayOneShot(build, 0.3f);
         yield return new WaitForSeconds(randomStart);
         source.Stop();
-        source.PlayOneShot(hit);
+        source.PlayOneShot(hit,0.3f);
         reactBackground.color = Color.green;
         startTime = Time.time;
         clockIsTicking=true;

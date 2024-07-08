@@ -8,9 +8,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 275345556067688882, guid: 002b74e866060034baedf75c979b0920, type: 3}
+      propertyPath: m_Pitch
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 801345269363722987, guid: 002b74e866060034baedf75c979b0920, type: 3}
       propertyPath: m_Name
-      value: Circle dark0
+      value: Circle dark
       objectReference: {fileID: 0}
     - target: {fileID: 801345269363722987, guid: 002b74e866060034baedf75c979b0920, type: 3}
       propertyPath: m_TagString

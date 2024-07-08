@@ -16,6 +16,8 @@ public class bottleScript : MonoBehaviour
     public EyeManager eyeManager;
     public SpriteRenderer spriteRenderer;
     public bool isdead;
+    public AudioSource audioSource;
+
 
 
     private void OnEnable()
@@ -73,6 +75,7 @@ public class bottleScript : MonoBehaviour
 
     void Shoot()
     {
+        audioSource.Play();
         var drop = Instantiate(dropPrefab, dropSpawnPoint.position, dropSpawnPoint.rotation);
         drop.GetComponent<Rigidbody2D>().velocity = dropSpawnPoint.up * dropSpeed;
     }

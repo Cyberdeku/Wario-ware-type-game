@@ -10,6 +10,7 @@ public class Mouse : MonoBehaviour
 
     [SerializeField] float speed;
     [SerializeField] float rotateSpeed;
+    [SerializeField] AudioSource audioSource;
 
     Vector3 position = new(21f, 4f, 0f);
     private void OnEnable()
@@ -31,27 +32,6 @@ public class Mouse : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-        //Move = Vector2.zero;
-        //if (Input.GetKey(KeyCode.UpArrow))
-        //{
-        //    Move = Vector2.up;
-        //}
-        //if (Input.GetKey(KeyCode.DownArrow))
-        //{
-        //    Move = Vector2.down;
-        //}
-        //if (Input.GetKey(KeyCode.LeftArrow))
-        //{
-        //    Move = Vector2.left;
-        //}
-        //if (Input.GetKey(KeyCode.RightArrow))
-        //{
-        //    Move = Vector2.right;
-        //}
-
-        //_rb.velocity = Move * speed;
-
         Moving();
 
     }

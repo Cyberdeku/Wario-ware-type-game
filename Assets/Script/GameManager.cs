@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioClip DeathSound;
     [SerializeField] AudioClip winGameEnded;
     [SerializeField] AudioClip DeathSoundtrack;
+    [SerializeField] AudioClip GameSoundtrack;
     [SerializeField] AudioClip WinSoundtrack;
     [SerializeField] AudioSource SFXPlayer;
     [SerializeField] AudioSource MusicPlayer;
@@ -55,10 +56,12 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         director.stopped += OnDirectorEnded;
+        MusicPlayer.clip = GameSoundtrack;
+        MusicPlayer.Play();
     }
     private void Start()
     {
-        
+
         gameList.Shuffle();
 
         currentGame = gameList[index];
@@ -170,12 +173,12 @@ public class GameManager : MonoBehaviour
     public IEnumerator Death()
     {
 
-        SFXPlayer.PlayOneShot(DeathSound);
+        SFXPlayer.PlayOneShot(DeathSound, 0.01f);
         deathScreen.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         psVita.SetActive(false);
         MusicPlayer.clip = DeathSoundtrack;
-        MusicPlayer.Play();
+        MusicPlayer.PlayOneShot(DeathSoundtrack, 0.5f);
         isDeathStarted = true;  
     }
 

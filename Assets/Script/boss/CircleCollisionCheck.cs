@@ -8,9 +8,13 @@ public class CircleCollisionCheck : MonoBehaviour
     public BossAttack enemyScript;
     public Bar healthBar;
     public EnemyBar enemyBar;
+    public AudioSource source;
+    public AudioClip glideClip;
+    public AudioClip collisionClip;
 
     private void Start()
     {
+        source.PlayOneShot(glideClip);
         enemyBar= FindObjectOfType<EnemyBar>();
         healthBar = FindObjectOfType<Bar>();
         characterScript = FindObjectOfType<CharacterAttack>();
@@ -22,6 +26,8 @@ public class CircleCollisionCheck : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("circleE"))
             {
+                CollisionSound();
+                //instantiate a new object with an audioSource playing the collision clip that destroy itself after 2s
                 enemyBar.Change(-1);
                 enemyScript.life--;
                 Destroy(gameObject);
@@ -58,6 +64,8 @@ public class CircleCollisionCheck : MonoBehaviour
             }
             else if (collision.gameObject.CompareTag("circleDarkE"))
             {
+                CollisionSound();
+                //instantiate a new object with an audioSource playing the collision clip that destroy itself after 2s
                 enemyBar.Change(-1);
                 enemyScript.life--;
                 Destroy(gameObject);
@@ -82,7 +90,18 @@ public class CircleCollisionCheck : MonoBehaviour
 
 
     }
+    private void CollisionSound()
+    {
+        float randomNumber = Random.Range(0.6f, 1.2f);
+        GameObject soundObject = new GameObject("SoundCollision");
 
+        AudioSource collisionSource = soundObject.AddComponent<AudioSource>();
+        collisionSource.clip = collisionClip;
+        collisionSource.pitch = randomNumber;
+        collisionSource.volume = 0.4f;
+        collisionSource.Play();
+        Destroy(soundObject, collisionClip.length +2f);
+    }
     }
 
 

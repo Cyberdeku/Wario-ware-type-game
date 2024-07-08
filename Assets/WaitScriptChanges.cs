@@ -45,7 +45,7 @@ public class WaitScriptChanges : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         countdownTextField.text = "Go!";
         // start the game here
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.3f);
         countdownTextField.text = "";
         Games.SetActive(true);
         

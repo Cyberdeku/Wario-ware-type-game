@@ -173,7 +173,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator Death()
     {
 
-        SFXPlayer.PlayOneShot(DeathSound, 0.01f);
+        SFXPlayer.PlayOneShot(DeathSound, 0.5f);
         deathScreen.gameObject.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         psVita.SetActive(false);

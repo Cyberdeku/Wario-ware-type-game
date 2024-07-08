@@ -7,12 +7,28 @@ using UnityEngine.EventSystems;
 public class MouseScript : MiniGame
 {
     public ParticleSystem ps;
-    public IEnumerator Death()
+    public IEnumerator Win()
     {
-        //mouse.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        
         ps.Play();
-        print("death");
-        yield return null;
+        yield return new WaitForSeconds(0.3f);
         OnGameOver(true);
     }
 }
+//XXXXXXXXXXXXXXXXXXXXXXXXXX
+//XOOOOOOOOOOOOOOOOOOOOOOOOX
+//XOOOOOOOOOOOOOOOOOOOOOOOOX
+//XOOVVOOOOOOOOOOOOOOOOOOOOX
+//XOOVVOOOOOOOOOOOOOOOOOOOOX
+//XOOVVOOOOOOOOOOOOOOOOOOOOX
+//XOOOOOOOOOOOOOOOOOOOOOOOOX
+//XOOOOOOOOOOOOOOOOOOOOOOOOX
+//XOOOOOOOOOOOOOOOOOOOOOOOOX
+//XOOOOOOOOOOOOOOOOOOOOOOOOX
+//XOOOOOOOOOOOOOOOOOOOSSOOOX
+//XOOOOOOOOOOOOOOOOOOOSSOOOX
+//XOOOOOOOOOOOOOOOOOOOOOOOOX
+//XOOOOOOOOOOOOOOOOOOOOOOOOX
+//XXXXXXXXXXXXXXXXXXXXXXXXXX
+
+//---

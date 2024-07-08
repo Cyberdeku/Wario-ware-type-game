@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class CircleCollisionCheck : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class CircleCollisionCheck : MonoBehaviour
     public AudioSource source;
     public AudioClip glideClip;
     public AudioClip collisionClip;
+    public AudioClip wrongCollisionClip;
+    public AudioMixerGroup SFXMixer;
 
     private void Start()
     {
@@ -26,8 +29,8 @@ public class CircleCollisionCheck : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("circleE"))
             {
-                CollisionSound();
-                //instantiate a new object with an audioSource playing the collision clip that destroy itself after 2s
+                CollisionSound(collisionClip, "SoundCollision");
+                
                 enemyBar.Change(-1);
                 enemyScript.life--;
                 Destroy(gameObject);
@@ -35,6 +38,7 @@ public class CircleCollisionCheck : MonoBehaviour
             }
             else if (collision.gameObject.CompareTag("circleDarkE"))
             {
+                CollisionSound(wrongCollisionClip, "wrongSoundCollision");
                 characterScript.life--;
                 healthBar.Change(-1);
 
@@ -43,6 +47,7 @@ public class CircleCollisionCheck : MonoBehaviour
             }
             else if (collision.gameObject.CompareTag("UFOE"))
             {
+                CollisionSound(wrongCollisionClip, "wrongSoundCollision");
                 enemyBar.Change(+1);
                 Destroy(gameObject);
             }
@@ -56,6 +61,7 @@ public class CircleCollisionCheck : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("circleE"))
             {
+                CollisionSound(wrongCollisionClip, "wrongSoundCollision");
                 characterScript.life--;
                 healthBar.Change(-1);
                 
@@ -64,8 +70,7 @@ public class CircleCollisionCheck : MonoBehaviour
             }
             else if (collision.gameObject.CompareTag("circleDarkE"))
             {
-                CollisionSound();
-                //instantiate a new object with an audioSource playing the collision clip that destroy itself after 2s
+                CollisionSound(collisionClip, "SoundCollision");
                 enemyBar.Change(-1);
                 enemyScript.life--;
                 Destroy(gameObject);
@@ -73,6 +78,7 @@ public class CircleCollisionCheck : MonoBehaviour
             }
             else if (collision.gameObject.CompareTag("UFOE"))
             {
+                CollisionSound(wrongCollisionClip, "wrongSoundCollision");
                 enemyBar.Change(+1);
                 Destroy(gameObject);
             }
@@ -82,6 +88,7 @@ public class CircleCollisionCheck : MonoBehaviour
         {
             if(collision.gameObject.CompareTag("UFO"))
             {
+                //hit sound
                 characterScript.life--;
                 healthBar.Change(-1);
                 Destroy(gameObject) ;
@@ -90,17 +97,19 @@ public class CircleCollisionCheck : MonoBehaviour
 
 
     }
-    private void CollisionSound()
+    //instantiate a new object with an audioSource playing the collision clip that destroy itself after 2s
+    private void CollisionSound(AudioClip clip,string name)
     {
-        float randomNumber = Random.Range(0.6f, 1.2f);
-        GameObject soundObject = new GameObject("SoundCollision");
+        float randomNumber = Random.Range(0.8f, 1.2f);
+        GameObject soundObject = new GameObject(name);
 
         AudioSource collisionSource = soundObject.AddComponent<AudioSource>();
-        collisionSource.clip = collisionClip;
+        collisionSource.clip = clip;
         collisionSource.pitch = randomNumber;
-        collisionSource.volume = 0.4f;
+        collisionSource.volume = 0.5f;
+        collisionSource.outputAudioMixerGroup = SFXMixer;
         collisionSource.Play();
-        Destroy(soundObject, collisionClip.length +2f);
+        Destroy(soundObject, clip.length +2f);
     }
     }
 

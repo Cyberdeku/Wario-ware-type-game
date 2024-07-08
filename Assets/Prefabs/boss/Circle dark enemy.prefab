@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7359866179762457136, guid: adb6fce9216b20142931cb0d034a6f4e, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 801345269363722987, guid: adb6fce9216b20142931cb0d034a6f4e, type: 3}
       propertyPath: m_Name
       value: Circle dark enemy

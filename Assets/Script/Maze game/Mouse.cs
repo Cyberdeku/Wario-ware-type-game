@@ -11,7 +11,8 @@ public class Mouse : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float rotateSpeed;
     [SerializeField] AudioSource audioSource;
-
+    [SerializeField] AudioClip movementClip;
+    [SerializeField] AudioClip nibbleClip;
     Vector3 position = new(21f, 4f, 0f);
     private void OnEnable()
     {
@@ -28,12 +29,23 @@ public class Mouse : MonoBehaviour
             Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, Move);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotateSpeed * Time.deltaTime);
         }
+
     }
 
     private void FixedUpdate()
     {
+        float random = Random.Range(0.7f, 1.3f);
         Moving();
 
+        if (Move != Vector2.zero)
+        {
+            audioSource.enabled = true;
+            audioSource.pitch = random; 
+        }
+        else
+        {
+            audioSource.enabled = false;
+        }
     }
 
 
@@ -48,20 +60,17 @@ public class Mouse : MonoBehaviour
     private void Moving()
     {
         _rb.velocity = new Vector2(Move.x * speed, Move.y * speed);
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == "cheese")
         {
-            print("win");
-            StartCoroutine(mouseScript.Death());
-            
+            audioSource.PlayOneShot(nibbleClip);
+            StartCoroutine(mouseScript.Win()); 
         }
-        else
-        {
-            print("not a cheese win");
-        }
+
 
     }
 

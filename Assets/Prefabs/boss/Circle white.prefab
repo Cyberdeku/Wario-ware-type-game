@@ -234,6 +234,8 @@ MonoBehaviour:
   source: {fileID: 275345556067688882}
   glideClip: {fileID: 8300000, guid: 3a389590c90896c4ba9dcec6082063c4, type: 3}
   collisionClip: {fileID: 8300000, guid: ca45badf0fba50d48883d2a1d32e1e0c, type: 3}
+  wrongCollisionClip: {fileID: 8300000, guid: df7447f77e3d9d442abcd7a4e25288b4, type: 3}
+  SFXMixer: {fileID: 24300002, guid: b1a86bab5ec3c83448815546f49e72ef, type: 2}
 --- !u!82 &275345556067688882
 AudioSource:
   m_ObjectHideFlags: 0
@@ -243,7 +245,7 @@ AudioSource:
   m_GameObject: {fileID: 801345269363722987}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: b1a86bab5ec3c83448815546f49e72ef, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 0.5

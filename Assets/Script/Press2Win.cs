@@ -22,6 +22,7 @@ public class Press2Win : MiniGame
     //    KeyCode.Underscore, KeyCode.Caret, KeyCode.At
 
     //};
+    private float timer = 2f;
 
     private KeyCode[] possibleKeys = {
         KeyCode.B, KeyCode.C, KeyCode.D, KeyCode.E,
@@ -44,12 +45,20 @@ public class Press2Win : MiniGame
 
         //textwin.text = "Press " + KeyCodeToString(inputwin);
         textwin.text = "Press " + inputwin.ToString();
-        //timer = 10f;
+        timer = 2f;
     }
 
     protected override void Update()
     {
-        base.Update();
+
+        //base.Update();
+        if (timeractive)
+        {
+            timer = timer - Time.deltaTime;
+        }
+        TimeSpan time = TimeSpan.FromSeconds(timer);
+        timertext.text = time.ToString(@"mm\:ss\:fff");
+
         if (timer <= 0)
         {
 

@@ -31,13 +31,13 @@ public class CharacterAttack : MonoBehaviour
             StartCoroutine(gameManager.Death());
             
         }
-        if (Input.GetMouseButtonDown(0) && Time.time > nextShot)
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.D) && Time.time > nextShot    )
         {
             GameObject CircleIns = Instantiate(whiteCircleprefab, transform.position, Quaternion.identity,characterCircleContainer);
             nextShot = Time.time+shootDelay;
         }
 
-        if (Input.GetMouseButtonDown(1) && Time.time > nextShot)
+        if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.F) && Time.time > nextShot )
         {
             GameObject CircleIns = Instantiate(darkCircleprefab, transform.position, Quaternion.identity,characterCircleContainer);
             nextShot = Time.time + shootDelay;

@@ -54,7 +54,7 @@ public class Circle : MonoBehaviour
         if(Time.timeScale == 1)
         {
             Vector3 change = new Vector3(scaleChange, scaleChange, scaleChange);
-            transform.localScale += change;
+            transform.localScale += change * 500 * Time.deltaTime;
         }
 
 

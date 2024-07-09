@@ -45,14 +45,7 @@ public class BossAttack : MonoBehaviour
             
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("circle") || collision.gameObject.CompareTag("circleDark"))
-        {
-            //animator.SetTrigger("death");
-            Destroy(this);
-        }
-    }
+
 
     void Attack()
     {

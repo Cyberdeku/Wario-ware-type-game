@@ -15,10 +15,10 @@ public class MazeGenerator : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-            GenerateMazeFromTextFile("maze");
-        }
+        //if(Input.GetMouseButtonDown(0))
+        //{
+        //    GenerateMazeFromTextFile("maze");
+        //}
     }
     void GenerateMazeFromTextFile(string filename)
     {

@@ -17,11 +17,14 @@ public class bottleScript : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public bool isdead;
     public AudioSource audioSource;
-
+    public AudioClip shootClip;
+    public AudioClip fillClip;
+    public bool isPlaying;
 
 
     private void OnEnable()
     {
+        isPlaying = false ;
         spriteRenderer.color = Color.white;
         moveSpeed = 5f;
         life = 1f;
@@ -51,10 +54,18 @@ public class bottleScript : MonoBehaviour
         if(hold==true)
         {
             animator.SetBool("hold", true);
+            if(!isPlaying)
+            {
+                audioSource.PlayOneShot(fillClip, 0.7f);
+                isPlaying = true;
+            }
+            
         }
         else
         {
             animator.SetBool("hold", false);
+            audioSource.Stop();
+            isPlaying = false;
         }
         if (shoot ==true)
         {
@@ -75,9 +86,10 @@ public class bottleScript : MonoBehaviour
 
     void Shoot()
     {
-        audioSource.Play();
+        audioSource.PlayOneShot(shootClip);
         var drop = Instantiate(dropPrefab, dropSpawnPoint.position, dropSpawnPoint.rotation);
         drop.GetComponent<Rigidbody2D>().velocity = dropSpawnPoint.up * dropSpeed;
+        isPlaying = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

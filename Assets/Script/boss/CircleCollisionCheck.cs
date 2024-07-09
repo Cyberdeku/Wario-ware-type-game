@@ -49,7 +49,7 @@ public class CircleCollisionCheck : MonoBehaviour
             {
                 CollisionSound(wrongCollisionClip, "wrongSoundCollision");
                 enemyBar.Change(+1);
-                Destroy(gameObject);
+                enemyScript.life++;
             }
         }
        
@@ -80,7 +80,7 @@ public class CircleCollisionCheck : MonoBehaviour
             {
                 CollisionSound(wrongCollisionClip, "wrongSoundCollision");
                 enemyBar.Change(+1);
-                Destroy(gameObject);
+                enemyScript.life++;
             }
         }
         
@@ -88,7 +88,7 @@ public class CircleCollisionCheck : MonoBehaviour
         {
             if(collision.gameObject.CompareTag("UFO"))
             {
-                //hit sound
+                CollisionSound(wrongCollisionClip, "wrongSoundCollision");
                 characterScript.life--;
                 healthBar.Change(-1);
                 Destroy(gameObject) ;

@@ -27,17 +27,6 @@ public class ReactController : MiniGame
     AudioSource source;
 
 
-    // Start is called before the first frame update
-    //void Start()
-    //{
-    //    reactionTime = 0f;
-    //    startTime = 0f;
-    //    randomStart = 0f;
-    //    gameText.text = " Click to begin";
-    //    clockIsTicking = false;
-    //    canBeStopped = true;   
-    //}
-
     private void OnEnable()
     {
         reactionTime = 0f;

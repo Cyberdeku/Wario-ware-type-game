@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI lifetext;
     public int score = 0;
     [SerializeField]
-    int life = 3;
+    public int life = 3;
     float basetimer = 10f;
     int index;
 

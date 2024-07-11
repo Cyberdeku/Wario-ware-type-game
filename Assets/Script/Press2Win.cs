@@ -28,7 +28,7 @@ public class Press2Win : MiniGame
         KeyCode.B, KeyCode.C, KeyCode.D, KeyCode.E,
         KeyCode.F, KeyCode.G, KeyCode.H, KeyCode.I, KeyCode.J,
         KeyCode.K, KeyCode.L, KeyCode.N, KeyCode.O,
-        KeyCode.P, KeyCode.R, KeyCode.S, KeyCode.T,
+        KeyCode.R, KeyCode.S, KeyCode.T,
         KeyCode.U, KeyCode.V, KeyCode.X, KeyCode.Y,
     };
 

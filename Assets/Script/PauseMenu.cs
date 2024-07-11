@@ -55,7 +55,6 @@ public class PauseMenu : MonoBehaviour
 
     }
 
-
     void SetActiveAllChildren(GameObject parent, bool isActive)
     {
         foreach (Transform child in parent.transform)

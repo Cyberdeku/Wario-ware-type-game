@@ -9,15 +9,15 @@ public class BallScript : MiniGame
     public AudioClip clip;
     public AudioSource source;
     public GameObject Life;
-    private void OnEnable()
-    {
-        int randomNumber = UnityEngine.Random.Range(0, 4);
-        if(randomNumber == 0 )
-        {
-            Life.SetActive(true);
-        }
-        print(randomNumber);
-    }
+    //private void OnEnable()
+    //{
+    //    int randomNumber = UnityEngine.Random.Range(0, 4);
+    //    if(randomNumber == 0 )
+    //    {
+    //        Life.SetActive(true);
+    //    }
+    //    print(randomNumber);
+    //}
     public IEnumerator Goal()
     {
         source.PlayOneShot(clip, 1f);

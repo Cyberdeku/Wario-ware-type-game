@@ -45,7 +45,7 @@ public class Press2Win : MiniGame
 
         //textwin.text = "Press " + KeyCodeToString(inputwin);
         textwin.text = "Press " + inputwin.ToString();
-        timer = 2f;
+        timer = 10f;
     }
 
     protected override void Update()

@@ -20,6 +20,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: circleDark
       objectReference: {fileID: 0}
+    - target: {fileID: 6437891632971393262, guid: 002b74e866060034baedf75c979b0920, type: 3}
+      propertyPath: segments
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 6738713122996986919, guid: 002b74e866060034baedf75c979b0920, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

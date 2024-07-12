@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     [SerializeField]
     public int life = 3;
-    float basetimer = 10f;
+    float basetimer = 25f;
     int index;
 
     public Canvas deathScreen;
